@@ -1,10 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:pagination_app/pagination_screen.dart';
 import 'package:pagination_app/testing_pagination.dart';
+import 'package:pagination_app/theme/theme.dart';
 import 'package:pagination_app/theme/theme_home_screen.dart';
+import 'package:pagination_app/theme/theme_provider.dart';
+import 'package:pagination_app/theme_testing/testing_theme_ui.dart';
+import 'package:pagination_app/theme_testing/theme_testing_provider.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeTestingProvider()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -13,10 +25,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      home: TestingPagination(),
+      home: const TestingThemeUi(),
+      theme: Provider.of<ThemeTestingProvider>(context).themeData,
     );
   }
 }

@@ -20,9 +20,7 @@ class _TestingPaginationState extends State<TestingPagination> {
   void initState() {
     super.initState();
     getPosts();
-
     print('first time API called  abc    -------------->');
-
     scrollController.addListener(() {
       if (scrollController.position.pixels ==
               scrollController.position.maxScrollExtent &&
